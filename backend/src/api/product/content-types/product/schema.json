@@ -13,18 +13,28 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "image": {
       "type": "media",
       "multiple": true,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
+    },
+    "size": {
+      "type": "json",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
     }
   }
 }
