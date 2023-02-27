@@ -6,11 +6,14 @@ import { BiArrowBack } from "react-icons/bi";
 
 const HomeBanner = () => {
     return (
-        <div className="relative text-white text-[20px]">
+        <div className="relative text-white text-[20px] w-full max-w-[1360px] mx-auto ">
             <Carousel
+                autoPlay={true}
+                infiniteLoop={true}
                 showThumbs={false}
                 showIndicators={false}
                 showStatus={false}
+                animationHandler="fade"
                 renderArrowPrev={(clickHandler, hasPrev) => (
                     <div
                         onClick={clickHandler}
@@ -28,9 +31,24 @@ const HomeBanner = () => {
                     </div>
                 )}
             >
-                <img src="/slide-1.png" />
-                <img src="/slide-2.png" />
-                <img src="/slide-3.png" />
+                <div>
+                    <img src="/slide-1.png" />
+                    <div className="px-[40px] py-[25px] font-oswald bg-white absolute bottom-[75px] left-0 text-black/[0.9] text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
+                        Shop now
+                    </div>
+                </div>
+                <div>
+                    <img src="/slide-2.png" />
+                    <div className="px-[40px] py-[25px] font-oswald bg-white absolute bottom-[75px] left-0 text-black/[0.9] text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
+                        Shop now
+                    </div>
+                </div>
+                <div>
+                    <img src="/slide-3.png" />
+                    <div className="px-[40px] py-[25px] font-oswald bg-white absolute bottom-[75px] left-0 text-black/[0.9] text-[30px] uppercase font-medium cursor-pointer hover:opacity-90">
+                        Shop now
+                    </div>
+                </div>
             </Carousel>
         </div>
     );
