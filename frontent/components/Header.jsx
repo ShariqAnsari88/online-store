@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart, BsChevronDown } from "react-icons/bs";
-import { BiSearch } from "react-icons/bi";
 
 import Wrapper from "./Wrapper";
 
@@ -49,6 +48,7 @@ const Header = () => {
                     >
                         Categories
                         <BsChevronDown size={14} />
+                        {/* SUBMENU START */}
                         {showCatMenu && (
                             <ul className="bg-white absolute top-6 left-0 min-w-[200px] px-1 py-1 text-black shadow-lg">
                                 <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
@@ -69,6 +69,7 @@ const Header = () => {
                                 </li>
                             </ul>
                         )}
+                        {/* SUBMENU END */}
                     </li>
                     <li className="cursor-pointer">Contact Us</li>
                 </ul>
@@ -76,28 +77,23 @@ const Header = () => {
 
                 {/* HEADER ICONS START */}
                 <div className="flex items-center gap-2">
-                    {/* <div class="flex items-center gap-2 h-11 w-[200px] rounded-[25px] px-4 bg-black/[0.025]">
-                        <BiSearch size={20} className="shrink-0" />
-                        <input
-                            class="text-lg bg-transparent outline-none grow"
-                            type="search"
-                            name="search"
-                            placeholder="Search"
-                            autoComplete="off"
-                        />
-                    </div> */}
+                    {/* ICON START */}
+
                     <div className="w-12 h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
                         <IoMdHeartEmpty size={24} />
                         <div className="h-[18px] min-w-[18px] px-[5px] rounded-full bg-red-600 absolute top-1 left-7 text-white text-[12px] flex justify-center items-center">
                             18
                         </div>
                     </div>
+                    {/* ICON END */}
+                    {/* ICON START */}
                     <div className="w-12 h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
                         <BsCart size={20} />
                         <div className="h-[18px] min-w-[18px] rounded-full bg-red-600 absolute top-1 left-7 text-white text-[12px] flex justify-center items-center">
                             5
                         </div>
                     </div>
+                    {/* ICON END */}
                 </div>
                 {/* HEADER ICONS END */}
             </Wrapper>
