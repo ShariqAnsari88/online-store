@@ -1,8 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
 const ProductCard = () => {
     return (
-        <div class="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer">
+        <Link
+            href="/product/1"
+            class="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
+        >
             <img class="w-full" src="/product-1.webp" alt="Product Image" />
             <div class="p-4 text-black/[0.9]">
                 <h2 class="text-lg font-medium">Product Name</h2>
@@ -14,7 +18,7 @@ const ProductCard = () => {
                     </p>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

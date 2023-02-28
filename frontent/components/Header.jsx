@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart, BsChevronDown } from "react-icons/bs";
@@ -14,8 +15,7 @@ const Header = () => {
 
     const controlNavbar = () => {
         if (window.scrollY > 200) {
-            // if (window.scrollY > lastScrollY && !mobileMenu) {
-            if (window.scrollY > lastScrollY) {
+            if (window.scrollY > lastScrollY && !mobileMenu) {
                 setShow("-translate-y-[80px]"); // hide
             } else {
                 setShow("shadow-sm"); // show
@@ -38,12 +38,18 @@ const Header = () => {
             className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 translate-y-0 ${show}`}
         >
             <Wrapper className="h-[60px] flex justify-between items-center">
-                <img src="/logo.svg" className="w-[40px] md:w-[60px]" />
+                <Link href="/">
+                    <img src="/logo.svg" className="w-[40px] md:w-[60px]" />
+                </Link>
 
                 {/* DESKTOP MENU START */}
-                <ul className="hidden md:flex items-center gap-8 font-medium">
-                    <li className="cursor-pointer">Home</li>
-                    <li className="cursor-pointer">About</li>
+                <ul className="hidden md:flex items-center gap-8 font-medium text-black">
+                    <li className="cursor-pointer">
+                        <Link href="/">Home</Link>
+                    </li>
+                    <li className="cursor-pointer">
+                        <Link href="/About">About</Link>
+                    </li>
                     <li
                         className="cursor-pointer flex items-center gap-2 relative"
                         onMouseEnter={() => setShowCatMenu(true)}
@@ -80,12 +86,12 @@ const Header = () => {
 
                 {/* MOBILE MENU START */}
                 {mobileMenu && (
-                    <ul className="flex flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] bg-white border-t">
+                    <ul className="flex flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] bg-white border-t text-black">
                         <li className="cursor-pointer py-4 px-5 border-b">
-                            Home
+                            <Link href="/">Home</Link>
                         </li>
                         <li className="cursor-pointer py-4 px-5 border-b">
-                            About
+                            <Link href="/About">About</Link>
                         </li>
                         <li
                             className="cursor-pointer py-4 px-5 border-b flex flex-col relative"
@@ -126,7 +132,7 @@ const Header = () => {
                 {/* MOBILE MENU END */}
 
                 {/* HEADER ICONS START */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-black">
                     {/* ICON START */}
 
                     <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
@@ -145,7 +151,7 @@ const Header = () => {
                     </div>
                     {/* ICON END */}
                     {/* MOBILE MENU ICON START */}
-                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
+                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex md:hidden justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
                         {mobileMenu ? (
                             <VscChromeClose
                                 className="text-[16px]"
