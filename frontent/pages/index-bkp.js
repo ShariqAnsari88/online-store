@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Wrapper from "@/components/Wrapper";
-import SmallProductCard from "@/components/SmallProductCard";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
