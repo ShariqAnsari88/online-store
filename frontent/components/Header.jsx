@@ -32,13 +32,13 @@ const Header = () => {
 
     return (
         <header
-            className={`w-full h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 translate-y-0 ${show}`}
+            className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 translate-y-0 ${show}`}
         >
             <Wrapper className="h-[60px] flex justify-between items-center">
-                <img src="/logo.svg" className="w-[60px]" />
+                <img src="/logo.svg" className="w-[40px] md:w-[60px]" />
 
                 {/* MENU START */}
-                <ul className="flex items-center gap-8 font-medium">
+                <ul className="hidden md:flex items-center gap-8 font-medium">
                     <li className="cursor-pointer">Home</li>
                     <li className="cursor-pointer">About</li>
                     <li
@@ -79,17 +79,17 @@ const Header = () => {
                 <div className="flex items-center gap-2">
                     {/* ICON START */}
 
-                    <div className="w-12 h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
-                        <IoMdHeartEmpty size={24} />
-                        <div className="h-[18px] min-w-[18px] px-[5px] rounded-full bg-red-600 absolute top-1 left-7 text-white text-[12px] flex justify-center items-center">
-                            18
+                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+                        <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
+                        <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                            58
                         </div>
                     </div>
                     {/* ICON END */}
                     {/* ICON START */}
-                    <div className="w-12 h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
-                        <BsCart size={20} />
-                        <div className="h-[18px] min-w-[18px] rounded-full bg-red-600 absolute top-1 left-7 text-white text-[12px] flex justify-center items-center">
+                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+                        <BsCart className="text-[15px] md:text-[20px]" />
+                        <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
                             5
                         </div>
                     </div>

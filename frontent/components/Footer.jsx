@@ -102,7 +102,7 @@ const Footer = () => {
                 {/* LEFT END */}
 
                 {/* RIGHT START */}
-                <div className="flex gap-1 md:gap-5 text-center md:text-left flex-wrap justify-center">
+                <div className="flex gap-2 md:gap-5 text-center md:text-left flex-wrap justify-center">
                     <div className="text-[12px] text-white/[0.5] hover:text-white cursor-pointer">
                         Guides
                     </div>
