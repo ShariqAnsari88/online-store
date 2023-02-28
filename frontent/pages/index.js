@@ -8,7 +8,7 @@ export default function Home() {
             <HomeBanner />
             <Wrapper>
                 <div className="text-center max-w-[800px] mx-auto my-[80px]">
-                    <div className="text-[34px] mb-5 font-semibold">
+                    <div className="text-[34px] mb-5 font-semibold leading-tight">
                         Cushioning for Your Miles
                     </div>
                     <div className="text-xl">
