@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { BsCart, BsChevronDown } from "react-icons/bs";
+import { BsCart } from "react-icons/bs";
 import { BiMenuAltRight } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
 
 import Wrapper from "./Wrapper";
+import Menu from "./Menu";
+import MenuMobile from "./MenuMobile";
 
 const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
     const [showCatMenu, setShowCatMenu] = useState(false);
-    const [show, setShow] = useState("top");
+    const [show, setShow] = useState("");
     const [lastScrollY, setLastScrollY] = useState(0);
 
     const controlNavbar = () => {
@@ -21,7 +23,7 @@ const Header = () => {
                 setShow("shadow-sm"); // show
             }
         } else {
-            setShow("top");
+            setShow("");
         }
         setLastScrollY(window.scrollY);
     };
@@ -43,91 +45,19 @@ const Header = () => {
                 </Link>
 
                 {/* DESKTOP MENU START */}
-                <ul className="hidden md:flex items-center gap-8 font-medium text-black">
-                    <li className="cursor-pointer">
-                        <Link href="/">Home</Link>
-                    </li>
-                    <li className="cursor-pointer">
-                        <Link href="/About">About</Link>
-                    </li>
-                    <li
-                        className="cursor-pointer flex items-center gap-2 relative"
-                        onMouseEnter={() => setShowCatMenu(true)}
-                        onMouseLeave={() => setShowCatMenu(false)}
-                    >
-                        Categories
-                        <BsChevronDown size={14} />
-                        {/* SUBMENU START */}
-                        {showCatMenu && (
-                            <ul className="bg-white absolute top-6 left-0 min-w-[200px] px-1 py-1 text-black shadow-lg">
-                                <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
-                                    Jordan
-                                    <span className="opacity-50 text-sm">{`(18)`}</span>
-                                </li>
-                                <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
-                                    Snikkers
-                                    <span className="opacity-50 text-sm">{`(73)`}</span>
-                                </li>
-                                <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
-                                    Running shoes
-                                    <span className="opacity-50 text-sm">{`(45)`}</span>
-                                </li>
-                                <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
-                                    Football shoes
-                                    <span className="opacity-50 text-sm">{`(9)`}</span>
-                                </li>
-                            </ul>
-                        )}
-                        {/* SUBMENU END */}
-                    </li>
-                    <li className="cursor-pointer">Contact Us</li>
-                </ul>
+                <Menu
+                    showCatMenu={showCatMenu}
+                    setShowCatMenu={setShowCatMenu}
+                />
                 {/* DESKTOP MENU END */}
 
                 {/* MOBILE MENU START */}
                 {mobileMenu && (
-                    <ul className="flex flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] bg-white border-t text-black">
-                        <li className="cursor-pointer py-4 px-5 border-b">
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li className="cursor-pointer py-4 px-5 border-b">
-                            <Link href="/About">About</Link>
-                        </li>
-                        <li
-                            className="cursor-pointer py-4 px-5 border-b flex flex-col relative"
-                            onClick={() => setShowCatMenu(!showCatMenu)}
-                        >
-                            <div className="flex justify-between items-center">
-                                Categories
-                                <BsChevronDown size={14} />
-                            </div>
-                            {/* SUBMENU START */}
-                            {showCatMenu && (
-                                <ul className="bg-black/[0.05] -mx-5 mt-4 -mb-4">
-                                    <li className="cursor-pointer py-4 px-8 border-b flex justify-between">
-                                        Jordan
-                                        <span className="opacity-50 text-sm">{`(18)`}</span>
-                                    </li>
-                                    <li className="cursor-pointer py-4 px-8 border-b flex justify-between">
-                                        Snikkers
-                                        <span className="opacity-50 text-sm">{`(73)`}</span>
-                                    </li>
-                                    <li className="cursor-pointer py-4 px-8 border-b flex justify-between">
-                                        Running shoes
-                                        <span className="opacity-50 text-sm">{`(45)`}</span>
-                                    </li>
-                                    <li className="cursor-pointer py-4 px-8 flex justify-between">
-                                        Football shoes
-                                        <span className="opacity-50 text-sm">{`(9)`}</span>
-                                    </li>
-                                </ul>
-                            )}
-                            {/* SUBMENU END */}
-                        </li>
-                        <li className="cursor-pointer py-4 px-5 border-b">
-                            Contact Us
-                        </li>
-                    </ul>
+                    <MenuMobile
+                        showCatMenu={showCatMenu}
+                        setShowCatMenu={setShowCatMenu}
+                        setMobileMenu={setMobileMenu}
+                    />
                 )}
                 {/* MOBILE MENU END */}
 
