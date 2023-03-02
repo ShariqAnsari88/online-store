@@ -24,7 +24,7 @@ const ProductDetails = () => {
 
                         {/* PRODUCT SUBTITLE */}
                         <div className="text-lg font-semibold mb-5">
-                            Men's Golf Shoes
+                            Men&apos;s Golf Shoes
                         </div>
 
                         {/* PRODUCT PRICE */}

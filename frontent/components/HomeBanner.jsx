@@ -6,14 +6,13 @@ import { BiArrowBack } from "react-icons/bi";
 
 const HomeBanner = () => {
     return (
-        <div className="relative text-white text-[20px] w-full max-w-[1360px] mx-auto ">
+        <div className="relative text-white text-[20px] w-full max-w-[1360px] mx-auto">
             <Carousel
                 autoPlay={true}
                 infiniteLoop={true}
                 showThumbs={false}
                 showIndicators={false}
                 showStatus={false}
-                animationHandler="fade"
                 renderArrowPrev={(clickHandler, hasPrev) => (
                     <div
                         onClick={clickHandler}
