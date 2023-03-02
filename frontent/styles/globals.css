@@ -42,15 +42,7 @@
 .productCarousel.carousel-root .carousel .thumbs-wrapper {
     margin: 0;
 }
-.productCarousel.carousel-root .carousel .thumbs {
-    display: flex;
-    gap: 10px;
-}
 .productCarousel.carousel-root .carousel .thumb {
-    border: 0;
-    padding: 0;
-    margin: 0;
-    width: 60px !important;
     height: 60px;
     border-radius: 6px;
     overflow: hidden;
@@ -87,11 +79,22 @@
     .productCarousel.carousel-root {
         flex-direction: column;
     }
+    .productCarousel.carousel-root .carousel .thumb {
+        border: 0;
+        padding: 0;
+    }
 }
 @media screen and (min-width: 768px) {
     .productCarousel.carousel-root .carousel .thumbs {
         transform: none !important;
         flex-direction: column;
+        display: flex;
+        gap: 10px;
+    }
+    .productCarousel.carousel-root .carousel .thumb {
+        border: 0;
+        padding: 0;
+        margin: 0;
     }
 }
 /* PRODUCT DETAILS CAROUSEL STYLING CUSTOMIZATION END */
