@@ -36,7 +36,14 @@ export default function Home({ products }) {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
+//     const products = await fetchDataFromApi("/api/products?populate=*");
+//     console.log(products);
+//     // Pass data to the page via props
+//     return { props: { products } };
+// }
+
+export async function getStaticProps() {
     const products = await fetchDataFromApi("/api/products?populate=*");
     console.log(products);
     // Pass data to the page via props
