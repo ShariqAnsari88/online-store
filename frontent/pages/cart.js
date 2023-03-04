@@ -27,6 +27,37 @@ const Cart = () => {
                     {/* SUMMARY START */}
                     <div className="flex-[1]">
                         <div className="text-lg font-bold">Summary</div>
+
+                        <div className="p-5 my-5 bg-black/[0.05] rounded-xl">
+                            {/* ROW START */}
+                            <div className="flex justify-between">
+                                {/* HEADING */}
+                                <div className="uppercase text-md md:text-lg font-medium text-black">
+                                    Subtotal
+                                </div>
+
+                                {/* PRICE */}
+                                <div className="text-md md:text-lg font-medium text-black">
+                                    ₹ 19 695.00
+                                </div>
+                            </div>
+                            {/* ROW END */}
+
+                            {/* MSG */}
+                            <div className="text-sm md:text-md py-5 border-t mt-5">
+                                The subtotal reflects the total price of your
+                                order, including duties and taxes, before any
+                                applicable discounts. It does not include
+                                delivery costs and international transaction
+                                fees.
+                            </div>
+                        </div>
+
+                        {/* BUTTON START */}
+                        <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75">
+                            Checkout
+                        </button>
+                        {/* BUTTON END */}
                     </div>
                     {/* SUMMARY END */}
                 </div>
