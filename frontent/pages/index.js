@@ -1,8 +1,9 @@
 import Wrapper from "@/components/Wrapper";
 import HomeBanner from "@/components/HomeBanner";
 import ProductCard from "@/components/ProductCard";
+import { fetchDataFromApi } from "@/utils/api";
 
-export default function Home() {
+export default function Home({ products }) {
     return (
         <main>
             <HomeBanner />
@@ -22,18 +23,22 @@ export default function Home() {
 
                 {/* PRODUCTS START */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {products &&
+                        products.data &&
+                        products.data.map((product) => (
+                            <ProductCard key={product.id} data={product} />
+                        ))}
                 </div>
                 {/* PRODUCTS END */}
             </Wrapper>
         </main>
     );
+}
+
+// This gets called on every request
+export async function getServerSideProps() {
+    const products = await fetchDataFromApi("/api/products?populate=*");
+
+    // Pass data to the page via props
+    return { props: { products } };
 }

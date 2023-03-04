@@ -12,8 +12,28 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "products"
+    },
     "name": {
       "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "size": {
+      "type": "json",
       "required": true
     },
     "image": {
@@ -24,16 +44,15 @@
         "images"
       ]
     },
-    "description": {
-      "type": "text",
-      "required": true
+    "favourite": {
+      "type": "boolean"
     },
-    "size": {
-      "type": "json",
-      "required": true
-    },
-    "price": {
-      "type": "decimal",
+    "thumbnail": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
       "required": true
     }
   }

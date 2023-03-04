@@ -3,33 +3,40 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import Wrapper from "@/components/Wrapper";
 import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
+import { fetchDataFromApi } from "@/utils/api";
+import ReactMarkdown from "react-markdown";
 
-const ProductDetails = () => {
+const ProductDetails = ({
+    product: {
+        data: { attributes: p },
+    },
+    products,
+}) => {
     return (
         <div className="w-full md:py-20">
             <Wrapper>
                 <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
                     {/* PRODUCT CAROUSEL START */}
                     <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-                        <ProductDetailsCarousel />
+                        <ProductDetailsCarousel images={p.image.data} />
                     </div>
                     {/* PRODUCT CAROUSEL END */}
 
                     {/* RIGHT CONTENT START */}
                     <div className="flex-[1] py-3">
                         {/* PRODUCT TITLE */}
-                        <div className="text-[34px] font-semibold mb-2">
-                            Jordan Retro 6 G
+                        <div className="text-[34px] font-semibold mb-2 leading-tight">
+                            {p.name}
                         </div>
 
                         {/* PRODUCT SUBTITLE */}
                         <div className="text-lg font-semibold mb-5">
-                            Men&apos;s Golf Shoes
+                            {p.subtitle}
                         </div>
 
                         {/* PRODUCT PRICE */}
                         <div className="text-lg font-semibold">
-                            MRP : ₹ 19 695.00
+                            MRP : &#8377;{p.price}
                         </div>
                         <div className="text-md font-medium text-black/[0.5]">
                             incl. of taxes
@@ -53,39 +60,18 @@ const ProductDetails = () => {
 
                             {/* SIZE START */}
                             <div className="grid grid-cols-3 gap-2">
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 6
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 6.5
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 7
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 7.5
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 8
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 8.5
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 9
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer">
-                                    UK 9.5
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium cursor-not-allowed bg-black/[0.1] opacity-50">
-                                    UK 10
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium cursor-not-allowed bg-black/[0.1] opacity-50">
-                                    UK 10.5
-                                </div>
-                                <div className="border rounded-md text-center py-3 font-medium cursor-not-allowed bg-black/[0.1] opacity-50">
-                                    UK 11
-                                </div>
+                                {p.size.data.map((item, i) => (
+                                    <div
+                                        key={i}
+                                        className={`border rounded-md text-center py-3 font-medium ${
+                                            item.enabled
+                                                ? "hover:border-black cursor-pointer"
+                                                : "cursor-not-allowed bg-black/[0.1] opacity-50"
+                                        }`}
+                                    >
+                                        {item.size}
+                                    </div>
+                                ))}
                             </div>
                             {/* SIZE END */}
                         </div>
@@ -109,27 +95,8 @@ const ProductDetails = () => {
                             <div className="text-lg font-bold mb-5">
                                 Product Details
                             </div>
-                            <div className="text-md mb-5">
-                                Feel unbeatable from the tee box to the final
-                                putt in a design ithat's pure early MJ: speed,
-                                class and laden with true early '90s touches
-                                like visible Air and a translucent rubber sole
-                                that continue to stand the test of time. This
-                                model fuses the strut of 1st MJ's championship
-                                with some of our best golf technology, helping
-                                you make a statement of confidence when it comes
-                                time to tame the course.
-                            </div>
-                            <div className="text-md mb-5">
-                                Feel unbeatable from the tee box to the final
-                                putt in a design ithat's pure early MJ: speed,
-                                class and laden with true early '90s touches
-                                like visible Air and a translucent rubber sole
-                                that continue to stand the test of time. This
-                                model fuses the strut of 1st MJ's championship
-                                with some of our best golf technology, helping
-                                you make a statement of confidence when it comes
-                                time to tame the course.
+                            <div className="markdown text-md mb-5">
+                                <ReactMarkdown>{p.description}</ReactMarkdown>
                             </div>
                         </div>
                         {/* PRODUCT DETAILS END */}
@@ -138,7 +105,7 @@ const ProductDetails = () => {
                 </div>
 
                 {/* RELATED PRODUCTS START */}
-                <RelatedProducts />
+                <RelatedProducts products={products} />
                 {/* RELATED PRODUCTS END */}
             </Wrapper>
         </div>
@@ -146,3 +113,32 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+export async function getStaticPaths() {
+    const products = await fetchDataFromApi("/api/products?populate=*");
+
+    const paths = products.data.map((product) => ({
+        params: {
+            id: product.id.toString(),
+        },
+    }));
+
+    console.log("this is paths", paths);
+
+    return {
+        paths,
+        fallback: false, // can also be true or 'blocking'
+    };
+}
+
+export async function getStaticProps({ params: { id } }) {
+    const product = await fetchDataFromApi(`/api/products/${id}?populate=*`);
+    const products = await fetchDataFromApi("/api/products?populate=*");
+
+    return {
+        props: {
+            product,
+            products,
+        },
+    };
+}
