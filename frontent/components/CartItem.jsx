@@ -38,7 +38,7 @@ const CartItem = () => {
                 {/* ROW START */}
                 <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-2 md:gap-10 text-black/[0.5] text-sm md:text-md">
-                        <div className="flex items-center">
+                        <div className="flex items-center gap-1">
                             <div className="font-semibold">Size:</div>
                             <select className="hover:text-black">
                                 <option value="1">UK 6</option>
@@ -55,7 +55,7 @@ const CartItem = () => {
                             </select>
                         </div>
 
-                        <div className="flex items-center">
+                        <div className="flex items-center gap-1">
                             <div className="font-semibold">Quantity:</div>
                             <select className="hover:text-black">
                                 <option value="1">1</option>
