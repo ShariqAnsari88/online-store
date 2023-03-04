@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "products"
-    },
     "name": {
       "type": "string",
       "required": true

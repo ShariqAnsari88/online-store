@@ -59,7 +59,7 @@ const ProductDetails = ({
                             {/* HEADING END */}
 
                             {/* SIZE START */}
-                            <div className="grid grid-cols-3 gap-2">
+                            {/* <div className="grid grid-cols-3 gap-2">
                                 {p.size.data.map((item, i) => (
                                     <div
                                         key={i}
@@ -72,7 +72,7 @@ const ProductDetails = ({
                                         {item.size}
                                     </div>
                                 ))}
-                            </div>
+                            </div> */}
                             {/* SIZE END */}
                         </div>
                         {/* PRODUCT SIZE RANGE END */}
