@@ -27,7 +27,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, cetegories }) => {
                                 {/* SUBMENU START */}
                                 {showCatMenu && (
                                     <ul className="bg-white absolute top-6 left-0 min-w-[250px] px-1 py-1 text-black shadow-lg">
-                                        {cetegories.map(
+                                        {cetegories?.map(
                                             ({ attributes: c, id }) => {
                                                 return (
                                                     <Link

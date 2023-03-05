@@ -33,7 +33,7 @@ const MenuMobile = ({
                                 {/* SUBMENU START */}
                                 {showCatMenu && (
                                     <ul className="bg-black/[0.05] -mx-5 mt-4 -mb-4">
-                                        {cetegories.map(
+                                        {cetegories?.map(
                                             ({ attributes: c, id }) => {
                                                 return (
                                                     <Link
