@@ -8,12 +8,14 @@ import { VscChromeClose } from "react-icons/vsc";
 import Wrapper from "./Wrapper";
 import Menu from "./Menu";
 import MenuMobile from "./MenuMobile";
+import { fetchDataFromApi } from "@/utils/api";
 
 const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
     const [showCatMenu, setShowCatMenu] = useState(false);
     const [show, setShow] = useState("translate-y-0");
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [cetegories, setCategories] = useState();
 
     const controlNavbar = () => {
         if (window.scrollY > 200) {
@@ -35,6 +37,19 @@ const Header = () => {
         };
     }, [lastScrollY]);
 
+    useEffect(() => {
+        fetchCategoriesData();
+    }, []);
+
+    const fetchCategoriesData = async () => {
+        const { data } = await fetchDataFromApi(
+            "/api/categories?populate=*",
+            true
+        );
+        console.log(data);
+        setCategories(data);
+    };
+
     return (
         <header
             className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
@@ -48,6 +63,7 @@ const Header = () => {
                 <Menu
                     showCatMenu={showCatMenu}
                     setShowCatMenu={setShowCatMenu}
+                    cetegories={cetegories}
                 />
                 {/* DESKTOP MENU END */}
 
@@ -57,6 +73,7 @@ const Header = () => {
                         showCatMenu={showCatMenu}
                         setShowCatMenu={setShowCatMenu}
                         setMobileMenu={setMobileMenu}
+                        cetegories={cetegories}
                     />
                 )}
                 {/* MOBILE MENU END */}

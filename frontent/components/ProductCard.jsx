@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { getDiscountedPricePercentage } from "@/utils/helper";
 
 const ProductCard = ({ data: { attributes: p, id } }) => {
     return (
@@ -8,7 +9,6 @@ const ProductCard = ({ data: { attributes: p, id } }) => {
             href={`/product/${id}`}
             className="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
         >
-            {/* <img className="w-full" src="/product-1.webp" alt="Product Image" /> */}
             <Image
                 src={p.thumbnail.data.attributes.url}
                 alt={p.name}
@@ -21,12 +21,20 @@ const ProductCard = ({ data: { attributes: p, id } }) => {
                     <p className="mr-2 text-lg font-semibold">
                         &#8377;{p.price}
                     </p>
-                    <p className="text-base  font-medium line-through">
-                        $25.00
-                    </p>
-                    <p className="ml-auto text-base font-medium text-green-500">
-                        20% off
-                    </p>
+                    {p.original_price && (
+                        <>
+                            <p className="text-base  font-medium line-through">
+                                &#8377;{p.original_price}
+                            </p>
+                            <p className="ml-auto text-base font-medium text-green-500">
+                                {getDiscountedPricePercentage(
+                                    p.original_price,
+                                    p.price
+                                )}
+                                % off
+                            </p>
+                        </>
+                    )}
                 </div>
             </div>
         </Link>

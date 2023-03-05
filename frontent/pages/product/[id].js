@@ -5,6 +5,7 @@ import ProductDetailsCarousel from "@/components/ProductDetailsCarousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { fetchDataFromApi } from "@/utils/api";
 import ReactMarkdown from "react-markdown";
+import { getDiscountedPricePercentage } from "@/utils/helper";
 
 const ProductDetails = ({
     product: {
@@ -35,12 +36,31 @@ const ProductDetails = ({
                         </div>
 
                         {/* PRODUCT PRICE */}
-                        <div className="text-lg font-semibold">
-                            MRP : &#8377;{p.price}
+                        <div className="flex items-center">
+                            <p className="mr-2 text-lg font-semibold">
+                                MRP : &#8377;{p.price}
+                            </p>
+                            {p.original_price && (
+                                <>
+                                    <p className="text-base  font-medium line-through">
+                                        &#8377;{p.original_price}
+                                    </p>
+                                    <p className="ml-auto text-base font-medium text-green-500">
+                                        {getDiscountedPricePercentage(
+                                            p.original_price,
+                                            p.price
+                                        )}
+                                        % off
+                                    </p>
+                                </>
+                            )}
                         </div>
+
+                        {/* TAX MSG */}
                         <div className="text-md font-medium text-black/[0.5]">
                             incl. of taxes
                         </div>
+                        {/* TAX MSG */}
                         <div className="text-md font-medium text-black/[0.5] mb-20">
                             {`(Also includes all applicable duties)`}
                         </div>
@@ -59,7 +79,7 @@ const ProductDetails = ({
                             {/* HEADING END */}
 
                             {/* SIZE START */}
-                            {/* <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-3 gap-2">
                                 {p.size.data.map((item, i) => (
                                     <div
                                         key={i}
@@ -72,7 +92,7 @@ const ProductDetails = ({
                                         {item.size}
                                     </div>
                                 ))}
-                            </div> */}
+                            </div>
                             {/* SIZE END */}
                         </div>
                         {/* PRODUCT SIZE RANGE END */}

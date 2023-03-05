@@ -2,7 +2,6 @@ import Wrapper from "@/components/Wrapper";
 import HomeBanner from "@/components/HomeBanner";
 import ProductCard from "@/components/ProductCard";
 import { fetchDataFromApi } from "@/utils/api";
-
 export default function Home({ products }) {
     return (
         <main>
@@ -45,7 +44,6 @@ export default function Home({ products }) {
 
 export async function getStaticProps() {
     const products = await fetchDataFromApi("/api/products?populate=*");
-    console.log(products);
     // Pass data to the page via props
     return { props: { products } };
 }
