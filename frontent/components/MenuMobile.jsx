@@ -37,12 +37,10 @@ const MenuMobile = ({
                                             ({ attributes: c, id }) => {
                                                 return (
                                                     <Link
+                                                        key={id}
                                                         href={`/category/${id}`}
                                                     >
-                                                        <li
-                                                            key={id}
-                                                            className="cursor-pointer py-4 px-8 border-t flex justify-between"
-                                                        >
+                                                        <li className="cursor-pointer py-4 px-8 border-t flex justify-between">
                                                             {c.name}
                                                             <span className="opacity-50 text-sm">{`(${c.products.data.length})`}</span>
                                                         </li>

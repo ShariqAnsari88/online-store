@@ -1,6 +1,6 @@
 export const API_URL =
     process.env.NEXT_PUBLIC_API_URL ||
-    "https://da6b-122-161-52-119.in.ngrok.io";
+    "https://c0ee-122-162-150-66.in.ngrok.io";
 
 export const LOCALHOST_API_URL = "http://localhost:1337";
 

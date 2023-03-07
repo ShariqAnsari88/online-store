@@ -31,12 +31,10 @@ const Menu = ({ showCatMenu, setShowCatMenu, cetegories }) => {
                                             ({ attributes: c, id }) => {
                                                 return (
                                                     <Link
+                                                        key={id}
                                                         href={`/category/${id}`}
                                                     >
-                                                        <li
-                                                            key={id}
-                                                            className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md"
-                                                        >
+                                                        <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
                                                             {c.name}
                                                             <span className="opacity-50 text-sm">{`(${c.products.data.length})`}</span>
                                                         </li>
