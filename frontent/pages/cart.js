@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Wrapper from "@/components/Wrapper";
@@ -13,6 +13,7 @@ const stripePromise = loadStripe(
 );
 
 const Cart = () => {
+    const [loading, setLoading] = useState(false);
     const { cartItems } = useSelector((state) => state.cart);
 
     const subTotal = useMemo(() => {
@@ -24,6 +25,7 @@ const Cart = () => {
 
     const handlePayment = async () => {
         try {
+            setLoading(true);
             const stripe = await stripePromise;
             const res = await makePaymentRequest("/api/orders", {
                 products: cartItems,
@@ -32,6 +34,7 @@ const Cart = () => {
                 sessionId: res.stripeSession.id,
             });
         } catch (err) {
+            setLoading(false);
             console.log(err);
         }
     };
@@ -93,10 +96,11 @@ const Cart = () => {
 
                                 {/* BUTTON START */}
                                 <button
-                                    className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+                                    className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center justify-center gap-3"
                                     onClick={handlePayment}
                                 >
                                     Checkout
+                                    {loading && <img src="/spinner.svg" />}
                                 </button>
                                 {/* BUTTON END */}
                             </div>
