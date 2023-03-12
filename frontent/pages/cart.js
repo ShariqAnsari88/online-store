@@ -15,7 +15,6 @@ const stripePromise = loadStripe(
 const Cart = () => {
     const { cartItems } = useSelector((state) => state.cart);
 
-    // cartItems.map((p) => (subTotal += p.attributes.price));
     const subTotal = useMemo(() => {
         return cartItems.reduce(
             (total, val) => total + val.attributes.price,

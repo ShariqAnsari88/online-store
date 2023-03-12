@@ -152,10 +152,9 @@ const ProductDetails = ({ product, products }) => {
                                 } else {
                                     dispatch(
                                         addToCart({
-                                            ...product.data,
+                                            ...product.data[0],
                                             selectedSize,
-                                            oneQuantityPrice:
-                                                product.data.attributes.price,
+                                            oneQuantityPrice: p.price,
                                         })
                                     );
                                     notify();
