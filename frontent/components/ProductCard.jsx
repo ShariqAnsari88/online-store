@@ -6,7 +6,7 @@ import { getDiscountedPricePercentage } from "@/utils/helper";
 const ProductCard = ({ data: { attributes: p, id } }) => {
     return (
         <Link
-            href={`/product/${id}`}
+            href={`/product/${p.slug}`}
             className="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
         >
             <Image

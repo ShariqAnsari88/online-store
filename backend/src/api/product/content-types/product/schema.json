@@ -57,6 +57,11 @@
     },
     "original_price": {
       "type": "decimal"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": false
     }
   }
 }

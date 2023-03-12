@@ -18,7 +18,7 @@ const ProductDetails = ({ product, products }) => {
     const [selectedSize, setSelectedSize] = useState();
     const [showError, setShowError] = useState(false);
 
-    const p = product.data.attributes;
+    const p = product.data[0].attributes;
 
     const notify = () => {
         toast.success("Success. Check your cart!", {
@@ -202,7 +202,7 @@ export async function getStaticPaths() {
 
     const paths = products.data.map((product) => ({
         params: {
-            id: product.id.toString(),
+            slug: product.attributes.slug,
         },
     }));
 
@@ -212,8 +212,10 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps({ params: { id } }) {
-    const product = await fetchDataFromApi(`/api/products/${id}?populate=*`);
+export async function getStaticProps({ params: { slug } }) {
+    const product = await fetchDataFromApi(
+        `/api/products?populate=*&filters[slug][$eq]=${slug}`
+    );
     const products = await fetchDataFromApi("/api/products?populate=*");
 
     return {

@@ -32,7 +32,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, cetegories }) => {
                                                 return (
                                                     <Link
                                                         key={id}
-                                                        href={`/category/${id}`}
+                                                        href={`/category/${c.slug}`}
                                                     >
                                                         <li className="h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">
                                                             {c.name}

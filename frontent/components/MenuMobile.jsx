@@ -38,7 +38,7 @@ const MenuMobile = ({
                                                 return (
                                                     <Link
                                                         key={id}
-                                                        href={`/category/${id}`}
+                                                        href={`/category/${c.slug}`}
                                                     >
                                                         <li className="cursor-pointer py-4 px-8 border-t flex justify-between">
                                                             {c.name}
