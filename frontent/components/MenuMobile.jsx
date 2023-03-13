@@ -39,6 +39,14 @@ const MenuMobile = ({
                                                     <Link
                                                         key={id}
                                                         href={`/category/${c.slug}`}
+                                                        onClick={() => {
+                                                            setShowCatMenu(
+                                                                false
+                                                            );
+                                                            setMobileMenu(
+                                                                false
+                                                            );
+                                                        }}
                                                     >
                                                         <li className="cursor-pointer py-4 px-8 border-t flex justify-between">
                                                             {c.name}
