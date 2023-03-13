@@ -1,5 +1,6 @@
 import { API_URL, LOCALHOST_API_URL, STRAPI_API_TOKEN } from "./urls";
 
+// This is generic data fetching method
 export const fetchDataFromApi = async (endpoint, localhost) => {
     const options = {
         method: "GET",
@@ -7,10 +8,6 @@ export const fetchDataFromApi = async (endpoint, localhost) => {
             Authorization: "Bearer " + STRAPI_API_TOKEN,
         },
     };
-
-    console.log(`${API_URL}${endpoint}`);
-
-    // Fetch data from external API
     const res = await fetch(
         `${localhost ? LOCALHOST_API_URL : API_URL}${endpoint}`,
         options
@@ -20,6 +17,7 @@ export const fetchDataFromApi = async (endpoint, localhost) => {
     return data;
 };
 
+// This is post method for making stripe payment request
 export const makePaymentRequest = async (endpoint, payload) => {
     const res = await fetch(`${API_URL}${endpoint}`, {
         method: "POST",
