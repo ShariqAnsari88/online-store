@@ -1,4 +1,4 @@
-import { API_URL, LOCALHOST_API_URL, STRAPI_API_TOKEN } from "./urls";
+import { API_URL, STRAPI_API_TOKEN } from "./urls";
 
 // This is generic data fetching method
 export const fetchDataFromApi = async (endpoint, localhost) => {
@@ -8,10 +8,7 @@ export const fetchDataFromApi = async (endpoint, localhost) => {
             Authorization: "Bearer " + STRAPI_API_TOKEN,
         },
     };
-    const res = await fetch(
-        `${localhost ? LOCALHOST_API_URL : API_URL}${endpoint}`,
-        options
-    );
+    const res = await fetch(`${API_URL}${endpoint}`, options);
     const data = await res.json();
 
     return data;
